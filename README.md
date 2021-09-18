@@ -3,6 +3,52 @@ Block Chains project - smart contracts, tokens
 
 
 
+
+
+**Different pieces of project**
+
+1) Remix contract for NFT Art token with (need to still decide whether to do ((Auction)))) or simple buy sell)
+   1) Function for Registry with Name, Artist, Appraise Value, Owner
+   2) Function to Buy NFT - then need to change owner and deduct the price - need to put checks this address paid the minumum. So need to give also the price info which is appraisal.  
+2)  Remix Contract for Museum Entry - 
+   1) Function - to pay for the Museum entry Token 
+   2) Later from Python be able to check who paid to send them link.
+   3) divide the Entry fee to the 4 owners ((+ whoever registered.))
+3) Python code to create transaction for museum entry token admission ticket.
+4) Python code to create transaction to buy NFT.
+5) Pythhon reports on who has bought Museum tickets - get it from Etherscan Kovan.
+6) Python reports on NFTs to know who owned and next owner?? Prices etc - get it from Etherscan Kovan.
+7) Tensorflow to generate the NFT images
+8) Steamlit to host the reports maybe>?? 
+9) Put all NFT on Pinata and get IPFS.
+10) Testing - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - Need to integrate all of our ideas to be like 1 project. 
 
 
