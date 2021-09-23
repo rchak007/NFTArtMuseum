@@ -314,11 +314,11 @@ def main_routine():
         session = SessionState.get(run_id=0)
         #session1 = SessionState.get(run_id=0)
         st.header("NFT Art Registry")
-        col1, mid, col2 = st.columns([1,10,30])
-        with col1:
-            st.image('NFT2AI.png',  width=250)
-        with col2:
-            st.image('NFT1.png',  width=250)
+#         col1, mid, col2 = st.columns([1,10,30])
+#         with col1:
+#             st.image('NFT2AI.png',  width=250)
+#         with col2:
+#             st.image('NFT1.png',  width=250)
         placeholder = st.empty()
         placeholder2 = st.empty()
         placeholder3 = st.empty()
