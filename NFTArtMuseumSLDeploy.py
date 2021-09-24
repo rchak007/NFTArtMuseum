@@ -20,6 +20,7 @@ def admin():
     #### Infura API suite provides instant access over HTTPS and WebSockets to the Ethereum network.
     WEB3_INFURA_API_KEY =  os.getenv("WEB3_INFURA_API_KEY")
     WEB3_INFURA_PROJECT_ID = os.getenv("WEB3_INFURA_PROJECT_ID")
+    st.write('WEB3_INFURA_API_KEY = ', WEB3_INFURA_API_KEY)
     # read contract for NFT musuem
     nft_museum_address = os.getenv("nft_museum_address")
     ### Contract NFT Art Musuem owner private key
@@ -31,6 +32,7 @@ def admin():
     https_str = f'https://kovan.infura.io/v3/{WEB3_INFURA_PROJECT_ID}'
     w1 = Web3(Web3.HTTPProvider(https_str))
     w1.middleware_onion.inject(geth_poa_middleware, layer=0)
+    st.write('Museum private key = ', museum_private_key)
     account_contract_owner = Account.from_key(museum_private_key)
     from web3.auto.infura import w3
     
