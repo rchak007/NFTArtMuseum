@@ -16,15 +16,15 @@ from etherscan import Etherscan
 import json
 
 def admin():
-    os.environ["WEB3_INFURA_API_KEY"] == st.secrets["WEB3_INFURA_API_KEY"]
-    os.environ["WEB3_INFURA_PROJECT_ID"] == st.secrets["WEB3_INFURA_PROJECT_ID"]
+    #os.environ["WEB3_INFURA_API_KEY"] == st.secrets["WEB3_INFURA_API_KEY"]
+    #os.environ["WEB3_INFURA_PROJECT_ID"] == st.secrets["WEB3_INFURA_PROJECT_ID"]
     #### Infura API suite provides instant access over HTTPS and WebSockets to the Ethereum network.
     
     
     load_dotenv()
     WEB3_INFURA_API_KEY =  os.getenv("WEB3_INFURA_API_KEY")
     WEB3_INFURA_PROJECT_ID = os.getenv("WEB3_INFURA_PROJECT_ID")
-    st.write('WEB3_INFURA_API_KEY = ', WEB3_INFURA_API_KEY)
+    #st.write('WEB3_INFURA_API_KEY = ', WEB3_INFURA_API_KEY)
     # read contract for NFT musuem
     nft_museum_address = os.getenv("nft_museum_address")
     ### Contract NFT Art Musuem owner private key
@@ -36,7 +36,7 @@ def admin():
     https_str = f'https://kovan.infura.io/v3/{WEB3_INFURA_PROJECT_ID}'
     w1 = Web3(Web3.HTTPProvider(https_str))
     w1.middleware_onion.inject(geth_poa_middleware, layer=0)
-    st.write('Museum private key = ', museum_private_key)
+    #st.write('Museum private key = ', museum_private_key)
     account_contract_owner = Account.from_key(museum_private_key)
     from web3.auto.infura import w3
     
@@ -350,11 +350,8 @@ def main_routine():
         placeholder6.text('Selected: {}'.format(price))        #artist_private_key = placeholder.text_input("Please enter your private key: ", key=  "artist_private_key", type="password")
         #st.button('Register Art')
         museum_action = 0
-        if st.button('Clear'):
-            session.run_id += 1
-            #session1.run_id += 1
 
-            #artist_private_key = placeholder.text_input("Please enter your private key: ", value='', key=  "artist_private_key")
+
         if st.button('Register Art'):
             try:
                 account_artist = Account.from_key(artist_private_key)
@@ -397,6 +394,8 @@ def main_routine():
                 #if st.button('NFT Art Museum'):
                     #webbrowser.open_new_tab(url)
                 return success, "Succcess"
+        if st.button('Clear'):
+            session.run_id += 1
         #st.write(df)
     elif page == "Buy NFT":
         st.header("NFT Buy Art page.")
