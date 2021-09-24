@@ -1,0 +1,4 @@
+streamlit==0.88.0
+pandas==1.2.4
+web3==5.23.0
+etherscan-python==2.1.0
