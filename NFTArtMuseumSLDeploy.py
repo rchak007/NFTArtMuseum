@@ -16,8 +16,12 @@ from etherscan import Etherscan
 import json
 
 def admin():
-    load_dotenv()
+    os.environ["WEB3_INFURA_API_KEY"] == st.secrets["WEB3_INFURA_API_KEY"]
+    os.environ["WEB3_INFURA_PROJECT_ID"] == st.secrets["WEB3_INFURA_PROJECT_ID"]
     #### Infura API suite provides instant access over HTTPS and WebSockets to the Ethereum network.
+    
+    
+    load_dotenv()
     WEB3_INFURA_API_KEY =  os.getenv("WEB3_INFURA_API_KEY")
     WEB3_INFURA_PROJECT_ID = os.getenv("WEB3_INFURA_PROJECT_ID")
     st.write('WEB3_INFURA_API_KEY = ', WEB3_INFURA_API_KEY)
