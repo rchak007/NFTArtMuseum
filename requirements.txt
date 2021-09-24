@@ -2,3 +2,10 @@ streamlit==0.88.0
 pandas==1.2.4
 web3==5.23.0
 etherscan-python==2.1.0
+python-dotenv==0.19.0
+eth-account==0.5.5
+pathlib2==2.3.5
+json5==0.9.5
+jsonschema==3.2.0
+python-jsonrpc-server==0.4.0
+ujson==4.0.2
