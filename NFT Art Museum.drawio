@@ -1,1 +1,34 @@
-<mxfile host="app.diagrams.net" modified="2021-09-25T07:06:43.449Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15" etag="7nmKxMyzd9l-1l5HaUMv" version="15.2.9" type="github"><diagram id="UNaX79pWi9RsRxxgaLS2" name="Page-1">tVbbcpswEP0aPybDJWDnMfjSTCdpOuPOtOmbDGtQI1gqhG369V0ZYazg3GacF1t7tLrsObsrRv40332RrMzuMQEx8pxkN/JnI89zndCjP400LTIehy2QSp4Ypx5Y8n/QrTRozROoLEeFKBQvbTDGooBYWRiTEre22xqFfWrJUhgAy5iJIfqTJypr0Ung9Pgt8DTrTnYdM5OzztkAVcYS3B5B/nzkTyWiakf5bgpCk9fx0q5bvDB7uJiEQr1nwcNf5+v979uEq/J6E60W4/nj5sLssmGiNgHPVQYS6pzQSGD8NM0YLyoTgmo6XiiaUg/jRvAiAemP/GibcQXLksV6Ykv5QFimckGWS8MV1uSZ3K0OAIufUqnRh1rRNmDwqs0CN6DxmgsxRYFyf6yfMJisY+2jJD7B0UwYT2C1phkTEUgFuxepcg8CUOYC5qBkQy5mQdCJ2CWtMbd9BvhdgmZH6oe+AZnJuvSwdS8MDYw2H9DJH+g0g1JgAwmhUyyUZJT8nvNt8YN+b6Qe39fVXsdnyslWBsP1G5o9oz8MF4vIPxPJrk2y6w5ZdoMTLE8+i+RgwBUk1AyMiVJlmGLBxLxHo55Nh6ze5w6xNBz+AaUa09lYrdBmmNiSzS+9/tJxrjvgsQXCSQfMduaI1mqOre8gOTEA0oBtGPrur0tDoWItY3iFkivTcplMQb3VR4ZSSxBM8Y19j7PrdjUojiUKTj6NXRwX7yuQrrWVEmOoqnc0thf62CcWz9iuneth6XinGtShxs6uQTjQwL0ku+1StgxYWG/LgH9iRdkEM8HTQj82xI7O8khzx+mRvjETOU+SthyBHg+22m+lS6FEXqh9rEE0CmZ6L6rA7oEZvCMFavEs4Qx0Bs0OKr0imnNCNO/jmpHZf1js544+z/z5fw==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-09-25T07:11:10.439Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15" etag="P8HW5jkuxtQzuBb8SP0S" version="15.2.9" type="github">
+  <diagram id="UNaX79pWi9RsRxxgaLS2" name="Page-1">
+    <mxGraphModel dx="1062" dy="776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Oq0JMZHditp9vBbF7EYv-1" value="Ethereum BlockChains" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="500" y="70" width="310" height="630" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="Oq0JMZHditp9vBbF7EYv-3" target="cf53it8ceL27e2IIw1Yk-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Oq0JMZHditp9vBbF7EYv-3" value="Deployed Contract NFT Art Museum" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66FFB3;" parent="1" vertex="1">
+          <mxGeometry x="510" y="110" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Oq0JMZHditp9vBbF7EYv-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.009;entryY=0.068;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="Oq0JMZHditp9vBbF7EYv-4" target="Oq0JMZHditp9vBbF7EYv-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Oq0JMZHditp9vBbF7EYv-4" value="Solidity Contract - NFT Art Museum" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#66FFB3;" parent="1" vertex="1">
+          <mxGeometry x="60" y="20" width="210" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Oq0JMZHditp9vBbF7EYv-6" value="1. Deploy Contract on BlockChain" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="290" y="90" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-1" value="ABI and Receipt" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="170" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-5" value="2. Deployed contract will return ABI and receipt" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="220" y="220" width="270" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
