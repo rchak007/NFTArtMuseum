@@ -1,20 +1,22 @@
-<mxfile host="app.diagrams.net" modified="2021-09-25T07:11:10.439Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15" etag="P8HW5jkuxtQzuBb8SP0S" version="15.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-09-25T09:11:25.792Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15" etag="5B7dGCIb7Vfcu907x5YF" version="15.2.9" type="github">
   <diagram id="UNaX79pWi9RsRxxgaLS2" name="Page-1">
     <mxGraphModel dx="1062" dy="776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="Oq0JMZHditp9vBbF7EYv-1" value="Ethereum BlockChains" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-          <mxGeometry x="500" y="70" width="310" height="630" as="geometry" />
+        <mxCell id="Oq0JMZHditp9vBbF7EYv-1" value="Ethereum BlockChains- KOVAN Testnet" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="500" y="70" width="310" height="670" as="geometry" />
         </mxCell>
         <mxCell id="cf53it8ceL27e2IIw1Yk-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="Oq0JMZHditp9vBbF7EYv-3" target="cf53it8ceL27e2IIw1Yk-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Oq0JMZHditp9vBbF7EYv-3" value="Deployed Contract NFT Art Museum" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66FFB3;" parent="1" vertex="1">
-          <mxGeometry x="510" y="110" width="160" height="110" as="geometry" />
+          <mxGeometry x="560" y="110" width="160" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="Oq0JMZHditp9vBbF7EYv-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.009;entryY=0.068;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="Oq0JMZHditp9vBbF7EYv-4" target="Oq0JMZHditp9vBbF7EYv-1" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="Oq0JMZHditp9vBbF7EYv-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="Oq0JMZHditp9vBbF7EYv-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="116" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="Oq0JMZHditp9vBbF7EYv-4" value="Solidity Contract - NFT Art Museum" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#66FFB3;" parent="1" vertex="1">
           <mxGeometry x="60" y="20" width="210" height="110" as="geometry" />
@@ -22,11 +24,41 @@
         <mxCell id="Oq0JMZHditp9vBbF7EYv-6" value="1. Deploy Contract on BlockChain" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="290" y="90" width="200" height="20" as="geometry" />
         </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.285;entryY=-0.035;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="cf53it8ceL27e2IIw1Yk-1" target="cf53it8ceL27e2IIw1Yk-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="cf53it8ceL27e2IIw1Yk-1" value="ABI and Receipt" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
           <mxGeometry x="40" y="170" width="165" height="60" as="geometry" />
         </mxCell>
         <mxCell id="cf53it8ceL27e2IIw1Yk-5" value="2. Deployed contract will return ABI and receipt" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="220" y="220" width="270" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-6" value="Python, Web3, Infura" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="21.25" y="450" width="248.75" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-7" value="Deployed Contract NFT Art Museum INSTANCE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66FFB3;" vertex="1" parent="1">
+          <mxGeometry x="530" y="450" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-10" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.twoWayArrow;dy=0.65;dx=22;" vertex="1" parent="1">
+          <mxGeometry x="260" y="475" width="270" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-11" value="3. Call &amp;amp; execute smart contract Functions &amp;nbsp;-&lt;br&gt;Register Art, Approve, Buy NFT, SafeTransfer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="260" y="420" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-12" value="4. &amp;nbsp;Receive transaction hash, exception" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="275" y="540" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="cf53it8ceL27e2IIw1Yk-13" target="cf53it8ceL27e2IIw1Yk-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-13" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/internet-security-flat-2/32/Internet_Security_Browser_webpage_website_web_page-128.png" vertex="1" parent="1">
+          <mxGeometry x="60" y="650" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-15" value="Streamlit Webpage" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="55" y="680" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cf53it8ceL27e2IIw1Yk-16" value="5. Register Art, Buy NFT requests" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="65" y="620" width="200" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
