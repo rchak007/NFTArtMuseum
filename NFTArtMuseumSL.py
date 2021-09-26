@@ -225,6 +225,7 @@ def execute_buyNFT(buyer_private_key, artist_address, price, buy_token_id, chain
         signed_buy_nft_txn = w1.eth.account.sign_transaction(buy_nft_txn, private_key=buyer_private_key)
     except Exception as error_signing_txn:
         error_sign = 1
+        print(error_sign, error_signing_txn)
     ### Send transaction for Approval
     error_sending_txn = ''
     error_send = 0
@@ -233,6 +234,7 @@ def execute_buyNFT(buyer_private_key, artist_address, price, buy_token_id, chain
         buy_nft_sent_txn = w1.eth.send_raw_transaction(signed_buy_nft_txn.rawTransaction) 
     except Exception as error_sending_txn:
         error_send = 1
+        print(error_send, error_sending_txn)
     #register_get_txn = w1.eth.getTransaction(register_sent_txn)
     return buy_nft_txn, signed_buy_nft_txn.hash, signed_buy_nft_txn.rawTransaction, signed_buy_nft_txn.r, signed_buy_nft_txn.s, signed_buy_nft_txn.v, buy_nft_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn
 
@@ -283,7 +285,10 @@ def main_routine():
     url = 'https://kovan.etherscan.io/address/0x52e95cf058c086d845b6938ccd1120c2fcf19a58'
     link = '[NFT Art Museum Conrtact](https://kovan.etherscan.io/address/0x52e95cf058c086d845b6938ccd1120c2fcf19a58)'
     page = st.sidebar.selectbox("Choose ", ["Register Art", "Buy NFT", "Test"])
-    st.title('Welcome to NFT Art Museum')
+    st.title('Welcome to Kintsugi NFT Art Museum')
+    #col1, mid, col2 = st.columns([100,100,520])
+    #with col1:
+        #st.image('Kintsugi.png', width=200)
     if page == "Test":
         st.write("a logo and text next to eachother")
         col1, mid, col2 = st.columns([100,100,520])
@@ -356,7 +361,7 @@ def main_routine():
                 print('ERROR', error_message)
                 st.write("ERROR", error_message)
                 error = 1
-                return error, error_message
+                #return error, error_message
             #museum_action = 1
         
             chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_contract_owner.address)
@@ -366,7 +371,7 @@ def main_routine():
                 return error_signing_txn
             if error_send == 1:
                 print('NFT Art Register - Error signing transaction: ', error_sending_txn)
-                return error_sending_txn
+                #return error_sending_txn
             if error_sign != 1 and error_send != 1:
                 st.write('Art registry successful!! congrats!')
                 print('register_nft_txn = ', register_nft_txn)
@@ -390,7 +395,7 @@ def main_routine():
                 st.markdown(link, unsafe_allow_html=True)
                 #if st.button('NFT Art Museum'):
                     #webbrowser.open_new_tab(url)
-                return success, "Succcess"
+                #return success, "Succcess"
         #st.write(df)
     elif page == "Buy NFT":
         st.header("NFT Buy Art page.")
@@ -403,7 +408,11 @@ def main_routine():
             st.write('NFT Name: ', l_art_collection[0])
             st.write('NFT Artist: ', l_art_collection[1])
             st.write('NFT Price: ', l_art_collection[2])
+            l_uri = contract_NFTArtMuseuminstance.functions.tokenURI(buy_token_id).call()
+            st.write('Token URI : ', l_uri)
             l_curr_owner = contract_NFTArtMuseuminstance.functions.ownerOf(buy_token_id).call()
+            #st.write('ttype of lowner = ', type(l_curr_owner))
+            l_curr_owner = l_curr_owner.lower()
             st.write('Current NFT Owner: ', l_curr_owner)
         #nft_name = st.text_input("Please enter your NFT name", key=  "nft_name")
         #artist_name = st.text_input("Please enter Artist name", key=  "artist_name")
@@ -411,8 +420,20 @@ def main_routine():
         #price = st.number_input('Enter Price of NFT: ', format="%f")
             price = int(l_art_collection[2])
             df = pd.read_csv('NFTOwners.csv')
-            df1 = df.loc[df['Address']==l_curr_owner]
+            df['Address'] = df['Address'].str.lower()
+            #st.write('l_curr_owner= ', l_curr_owner)
+            print('l_curr_owner= ', l_curr_owner)
+            #st.write('df= ', df)
+            print('df= ',df)
+            #st.write('df address= ', df['Address'])
+            print('df address', df['Address'])
+            df1 = df.loc[df['Address']== f'{l_curr_owner}']
+            #st.write('df1= ', df1)
+            print('df1 = ', df1)
+            #st.write('df= ', df['Address']==l_curr_owner)
             if not df1.empty:
+                #st.write(df1)
+                print(df1)
                 artist_private_key_buy = df1.iloc[0]['Key']
         #st.write('artist private key', artist_private_key_buy)
         #st.write('type artist private key', type(artist_private_key_buy))
@@ -427,7 +448,7 @@ def main_routine():
                 print('ERROR: ',error_message)
                 st.write("Buyer Private key address error", error_message)
                 error = 1
-                return error, error_message
+                #return error, error_message
             print('Buyer balance = ', eth.get_eth_balance(address=account_buyer.address))
             st.write('Buyer Address = ', account_buyer.address)
             buyer_bal = eth.get_eth_balance(address=account_buyer.address)
@@ -439,7 +460,7 @@ def main_routine():
                 print('ERROR: ',error_message)
                 st.write("Artist Private key address error", error_message)
                 error = 1
-                return error, error_message
+                #return error, error_message
             chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_artist_buy.address)
             print('****************** Approval *************')
             print('Chain id = ', chain_id)
@@ -450,10 +471,10 @@ def main_routine():
             approve_nft_txn, approve_signed_nft_txn_hash, approve_signed_nft_txn_rawTransaction, approve_signed_nft_txn_r, approve_signed_nft_txn_s, approve_signed_nft_txn_v, approve_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_approval(artist_private_key_buy, account_buyer.address, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
             if error_sign == 1:
                 print('Owner approval - Error signing transaction: ', error_signing_txn)
-                return error_sign, error_signing_txn
+                #return error_sign, error_signing_txn
             if error_send == 1:
                 print('Owner approval - Error signing transaction: ', error_sending_txn)
-                return error_send, error_sending_txn
+                #return error_send, error_sending_txn
             if error_sign != 1 and error_send != 1:
                 print('Approval successful.')
                 print('approve_nft_txn = ', approve_nft_txn)
@@ -476,10 +497,10 @@ def main_routine():
                 buy_nft_txn, signed_buy_nft_txn_hash, signed_buy_nft_txn_rawTransaction, signed_buy_nft_txn_r, signed_buy_nft_txn_s, signed_buy_nft_txn_v, buy_nft_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_buyNFT(buyer_private_key, account_artist_buy.address, price, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
                 if error_sign == 1:
                     print('BuyNFT - Error signing transaction: ', error_signing_txn)
-                    return error_sign, error_signing_txn
+                    #return error_sign, error_signing_txn
                 if error_send == 1:
                     print('BuyNFT - Error signing transaction: ', error_sending_txn)
-                    return error_send, error_sending_txn
+                    #return error_send, error_sending_txn
                 if error_sign != 1 and error_send != 1:
                     print('Buy-Trasnfer successful.')
                     print('buy_nft_txn = ', buy_nft_txn)
@@ -490,11 +511,13 @@ def main_routine():
                     print('signed_buy_nft_txn_v = ', signed_buy_nft_txn_v)
                     print('buy_nft_sent_txn = ', buy_nft_sent_txn)
                     # now store the Buyer private key since they are the new Owner and can be bought later
-                    df = pd.read_csv('NFTOwners.csv')
-                    df1 = df.loc[df['Key']==buyer_private_key]
-                    if df1.empty:
-                        df = df.append({'Address': account_buyer.address, 'Key': buyer_private_key }, ignore_index=True)
-                        df.to_csv('NFTOwners.csv', index=False)
+                    df_buy = pd.read_csv('NFTOwners.csv')
+                    df1_buy = df_buy.loc[df_buy['Key']==buyer_private_key]
+                    buyer_add = account_buyer.address
+                    buyer_add = buyer_add.lower()
+                    if df1_buy.empty:
+                        df_buy = df_buy.append({'Address': buyer_add, 'Key': buyer_private_key }, ignore_index=True)
+                        df_buy.to_csv('NFTOwners.csv', index=False)
                         #buy_nft_get_txn = w1.eth.getTransaction(buy_nft_sent_txn)
                         #print('buy_nft_get_txn = ', buy_nft_get_txn)
                     st.write('Success on Buying NFT. Congrats!! ')
@@ -521,133 +544,133 @@ def main_routine():
 #         except Exception as error_action:
 #             print('Please only enter 1, 2, 3 or 4 ')
 #             return error_action
-    if museum_action == 1:
-        # get Artist NFT info to register
-        # Call to execute Art Registry with error handling
-        # nft_name, artist_name, price, token_uri, artist_private_key, account_artist, error, error_message = get_artist_registry_info()
-#         if error == 1:
-#             print(error_message)
-#             return error_message
-        ## Get Nonce, Chain id, Gas estimate for Art Registry
-        chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_contract_owner.address)
-        register_nft_txn, register_signed_txn_hash, register_signed_txn_rawTransaction, register_signed_txn_r, register_signed_txn_s, register_signed_txn_v, register_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_art_registry(museum_private_key, account_artist.address, nft_name, artist_name, price, token_uri, chain_id, gasEstimate, gas_price, nonce)
-        if error_sign == 1:
-            print('NFT Art Register - Error signing transaction: ', error_signing_txn)
-            return error_signing_txn
-        if error_send == 1:
-            print('NFT Art Register - Error signing transaction: ', error_sending_txn)
-            return error_sending_txn
-        if error_sign != 1 and error_send != 1:
-            st.write('Art registry successful!! congrats. Your txn = ', register_nft_txn)
-            print('register_nft_txn = ', register_nft_txn)
-            print('register_signed_txn_hash = ', register_signed_txn_hash)
-            print('register_signed_txn_rawTransaction = ', register_signed_txn_rawTransaction)
-            print('register_signed_txn_r = ', register_signed_txn_r)
-            print('register_signed_txn_s = ', register_signed_txn_s)
-            print('register_signed_txn_v = ', register_signed_txn_v)
-            print('register_sent_txn = ', register_sent_txn)
-            #register_get_txn = w1.eth.getTransaction(register_sent_txn)
-            #print('register_get_txn = ', register_get_txn)
-            artist_private_key = ''
-            nft_name = ''
-            artist_name = ''
-            token_uri = ''
-            return success, "Succcess"
-    if museum_action == 2:
-        # get Buyer info first
-        buy_token_id, buyer_private_key, account_buyer, error, error_message = get_buy_nft_input()
-        print('Buy Token Id: ', buy_token_id)
-        print('Buyer account address', account_buyer.address)
-        print('Buyer balance = ', eth.get_eth_balance(address=account_buyer.address))
-        if error != 1:
-            # go ahead and get Artist's private key needed for Approval
-            ## this later need to be Automated to get it automatically.
-            price, artist_private_key_buy, account_artist_buy, error, error_message = get_artist_private_key()
-            if error != 1:
-                # go on to get approval & Buy/transfer now that we have all the info
-                ##### First approve
-                # Get Nonce, Chain id, Gas estimate for Approval
-                error_sign = 0
-                error_signing_txn = ''
-                error_send = 0
-                error_sending_txn = ''
-                chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_artist_buy.address)
-                print('****************** Approval *************')
-                print('Chain id = ', chain_id)
-                print('gasEstimate = ', gasEstimate)
-                print('gasPrice = ', gas_price)
-                print('Nonce = ', nonce)
-                # call Approval
-                approve_nft_txn, approve_signed_nft_txn_hash, approve_signed_nft_txn_rawTransaction, approve_signed_nft_txn_r, approve_signed_nft_txn_s, approve_signed_nft_txn_v, approve_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_approval(artist_private_key_buy, account_buyer.address, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
-                if error_sign == 1:
-                    print('Owner approval - Error signing transaction: ', error_signing_txn)
-                    return error_sign, error_signing_txn
-                if error_send == 1:
-                    print('Owner approval - Error signing transaction: ', error_sending_txn)
-                    return error_send, error_sending_txn
-                if error_sign != 1 and error_send != 1:
-                    print('Approval successful.')
-                    print('approve_nft_txn = ', approve_nft_txn)
-                    print('approve_signed_nft_txn_hash = ', approve_signed_nft_txn_hash)
-                    print('approve_signed_nft_txn_rawTransaction = ', approve_signed_nft_txn_rawTransaction)
-                    print('approve_signed_nft_txn_r = ', approve_signed_nft_txn_r)
-                    print('approve_signed_nft_txn_s = ', approve_signed_nft_txn_s)
-                    print('approve_signed_nft_txn_v = ', approve_signed_nft_txn_v)
-                    print('approve_sent_txn = ', approve_sent_txn)
-                    #approve_get_txn = w1.eth.getTransaction(approve_sent_txn)
-                    #print('approve_get_txn = ', approve_get_txn)
-                    # Approval is success now execute the Buy and Trasnfer function.
-                    chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_buyer.address)
-                    print('****************** Buy/Transfer *************')
-                    print('Chain id = ', chain_id)
-                    print('gasEstimate = ', gasEstimate)
-                    print('gasPrice = ', gas_price)
-                    print('Nonce = ', nonce)
-                    # call BuyNFT
-                    buy_nft_txn, signed_buy_nft_txn_hash, signed_buy_nft_txn_rawTransaction, signed_buy_nft_txn_r, signed_buy_nft_txn_s, signed_buy_nft_txn_v, buy_nft_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_buyNFT(buyer_private_key, account_artist_buy.address, price, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
-                    if error_sign == 1:
-                        print('BuyNFT - Error signing transaction: ', error_signing_txn)
-                        return error_sign, error_signing_txn
-                    if error_send == 1:
-                        print('BuyNFT - Error signing transaction: ', error_sending_txn)
-                        return error_send, error_sending_txn
-                    if error_sign != 1 and error_send != 1:
-                        print('Buy-Trasnfer successful.')
-                        print('buy_nft_txn = ', buy_nft_txn)
-                        print('signed_buy_nft_txn_hash = ', signed_buy_nft_txn_hash)
-                        print('signed_buy_nft_txn_rawTransaction = ', signed_buy_nft_txn_rawTransaction)
-                        print('signed_buy_nft_txn_r = ', signed_buy_nft_txn_r)
-                        print('signed_buy_nft_txn_s = ', signed_buy_nft_txn_s)
-                        print('signed_buy_nft_txn_v = ', signed_buy_nft_txn_v)
-                        print('buy_nft_sent_txn = ', buy_nft_sent_txn)
-                        #buy_nft_get_txn = w1.eth.getTransaction(buy_nft_sent_txn)
-                        #print('buy_nft_get_txn = ', buy_nft_get_txn)
-                        return 1, 'Approve and Buy/Trasfer success'
-#                 error_sign, error_send, error_signing_txn, error_sending_txn = approve_buy_nft(account_artist_buy, artist_private_key_buy, account_buyer, buyer_private_key, price, buy_token_id)
+#     if museum_action == 1:
+#         # get Artist NFT info to register
+#         # Call to execute Art Registry with error handling
+#         # nft_name, artist_name, price, token_uri, artist_private_key, account_artist, error, error_message = get_artist_registry_info()
+# #         if error == 1:
+# #             print(error_message)
+# #             return error_message
+#         ## Get Nonce, Chain id, Gas estimate for Art Registry
+#         chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_contract_owner.address)
+#         register_nft_txn, register_signed_txn_hash, register_signed_txn_rawTransaction, register_signed_txn_r, register_signed_txn_s, register_signed_txn_v, register_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_art_registry(museum_private_key, account_artist.address, nft_name, artist_name, price, token_uri, chain_id, gasEstimate, gas_price, nonce)
+#         if error_sign == 1:
+#             print('NFT Art Register - Error signing transaction: ', error_signing_txn)
+#             return error_signing_txn
+#         if error_send == 1:
+#             print('NFT Art Register - Error signing transaction: ', error_sending_txn)
+#             return error_sending_txn
+#         if error_sign != 1 and error_send != 1:
+#             st.write('Art registry successful!! congrats. Your txn = ', register_nft_txn)
+#             print('register_nft_txn = ', register_nft_txn)
+#             print('register_signed_txn_hash = ', register_signed_txn_hash)
+#             print('register_signed_txn_rawTransaction = ', register_signed_txn_rawTransaction)
+#             print('register_signed_txn_r = ', register_signed_txn_r)
+#             print('register_signed_txn_s = ', register_signed_txn_s)
+#             print('register_signed_txn_v = ', register_signed_txn_v)
+#             print('register_sent_txn = ', register_sent_txn)
+#             #register_get_txn = w1.eth.getTransaction(register_sent_txn)
+#             #print('register_get_txn = ', register_get_txn)
+#             artist_private_key = ''
+#             nft_name = ''
+#             artist_name = ''
+#             token_uri = ''
+#             return success, "Succcess"
+#     if museum_action == 2:
+#         # get Buyer info first
+#         buy_token_id, buyer_private_key, account_buyer, error, error_message = get_buy_nft_input()
+#         print('Buy Token Id: ', buy_token_id)
+#         print('Buyer account address', account_buyer.address)
+#         print('Buyer balance = ', eth.get_eth_balance(address=account_buyer.address))
+#         if error != 1:
+#             # go ahead and get Artist's private key needed for Approval
+#             ## this later need to be Automated to get it automatically.
+#             price, artist_private_key_buy, account_artist_buy, error, error_message = get_artist_private_key()
+#             if error != 1:
+#                 # go on to get approval & Buy/transfer now that we have all the info
+#                 ##### First approve
+#                 # Get Nonce, Chain id, Gas estimate for Approval
+#                 error_sign = 0
+#                 error_signing_txn = ''
+#                 error_send = 0
+#                 error_sending_txn = ''
+#                 chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_artist_buy.address)
+#                 print('****************** Approval *************')
+#                 print('Chain id = ', chain_id)
+#                 print('gasEstimate = ', gasEstimate)
+#                 print('gasPrice = ', gas_price)
+#                 print('Nonce = ', nonce)
+#                 # call Approval
+#                 approve_nft_txn, approve_signed_nft_txn_hash, approve_signed_nft_txn_rawTransaction, approve_signed_nft_txn_r, approve_signed_nft_txn_s, approve_signed_nft_txn_v, approve_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_approval(artist_private_key_buy, account_buyer.address, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
+#                 if error_sign == 1:
+#                     print('Owner approval - Error signing transaction: ', error_signing_txn)
+#                     return error_sign, error_signing_txn
+#                 if error_send == 1:
+#                     print('Owner approval - Error signing transaction: ', error_sending_txn)
+#                     return error_send, error_sending_txn
 #                 if error_sign != 1 and error_send != 1:
-#                     print('Successfully executed - Approve/BuyNFY')
-#                     # Buy NFT and transfer
-#                     #buy_nft_txn, signed_buy_nft_txn_hash, signed_buy_nft_txn_rawTransaction, signed_buy_nft_txn_r, signed_buy_nft_txn_s, signed_buy_nft_txn_v, buy_nft_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_buyNFT(buyer_private_key, account_artist_buy.address, price, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
-#                     #if error_sign == 1:
-#                         # need to later reset Approval with zero address
-#                     #    return error_sign, error_signing_txn
-#                     #elif error_send == 1:
-#                     #    # need to later reset Approval with zero address
-#                     #    return error_send, error_sending_txn
-#                     #else:
-#                     return success, "Success"
+#                     print('Approval successful.')
+#                     print('approve_nft_txn = ', approve_nft_txn)
+#                     print('approve_signed_nft_txn_hash = ', approve_signed_nft_txn_hash)
+#                     print('approve_signed_nft_txn_rawTransaction = ', approve_signed_nft_txn_rawTransaction)
+#                     print('approve_signed_nft_txn_r = ', approve_signed_nft_txn_r)
+#                     print('approve_signed_nft_txn_s = ', approve_signed_nft_txn_s)
+#                     print('approve_signed_nft_txn_v = ', approve_signed_nft_txn_v)
+#                     print('approve_sent_txn = ', approve_sent_txn)
+#                     #approve_get_txn = w1.eth.getTransaction(approve_sent_txn)
+#                     #print('approve_get_txn = ', approve_get_txn)
+#                     # Approval is success now execute the Buy and Trasnfer function.
+#                     chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_buyer.address)
+#                     print('****************** Buy/Transfer *************')
+#                     print('Chain id = ', chain_id)
+#                     print('gasEstimate = ', gasEstimate)
+#                     print('gasPrice = ', gas_price)
+#                     print('Nonce = ', nonce)
+#                     # call BuyNFT
+#                     buy_nft_txn, signed_buy_nft_txn_hash, signed_buy_nft_txn_rawTransaction, signed_buy_nft_txn_r, signed_buy_nft_txn_s, signed_buy_nft_txn_v, buy_nft_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_buyNFT(buyer_private_key, account_artist_buy.address, price, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
+#                     if error_sign == 1:
+#                         print('BuyNFT - Error signing transaction: ', error_signing_txn)
+#                         return error_sign, error_signing_txn
+#                     if error_send == 1:
+#                         print('BuyNFT - Error signing transaction: ', error_sending_txn)
+#                         return error_send, error_sending_txn
+#                     if error_sign != 1 and error_send != 1:
+#                         print('Buy-Trasnfer successful.')
+#                         print('buy_nft_txn = ', buy_nft_txn)
+#                         print('signed_buy_nft_txn_hash = ', signed_buy_nft_txn_hash)
+#                         print('signed_buy_nft_txn_rawTransaction = ', signed_buy_nft_txn_rawTransaction)
+#                         print('signed_buy_nft_txn_r = ', signed_buy_nft_txn_r)
+#                         print('signed_buy_nft_txn_s = ', signed_buy_nft_txn_s)
+#                         print('signed_buy_nft_txn_v = ', signed_buy_nft_txn_v)
+#                         print('buy_nft_sent_txn = ', buy_nft_sent_txn)
+#                         #buy_nft_get_txn = w1.eth.getTransaction(buy_nft_sent_txn)
+#                         #print('buy_nft_get_txn = ', buy_nft_get_txn)
+#                         return 1, 'Approve and Buy/Trasfer success'
+# #                 error_sign, error_send, error_signing_txn, error_sending_txn = approve_buy_nft(account_artist_buy, artist_private_key_buy, account_buyer, buyer_private_key, price, buy_token_id)
+# #                 if error_sign != 1 and error_send != 1:
+# #                     print('Successfully executed - Approve/BuyNFY')
+# #                     # Buy NFT and transfer
+# #                     #buy_nft_txn, signed_buy_nft_txn_hash, signed_buy_nft_txn_rawTransaction, signed_buy_nft_txn_r, signed_buy_nft_txn_s, signed_buy_nft_txn_v, buy_nft_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_buyNFT(buyer_private_key, account_artist_buy.address, price, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
+# #                     #if error_sign == 1:
+# #                         # need to later reset Approval with zero address
+# #                     #    return error_sign, error_signing_txn
+# #                     #elif error_send == 1:
+# #                     #    # need to later reset Approval with zero address
+# #                     #    return error_send, error_sending_txn
+# #                     #else:
+# #                     return success, "Success"
                 
-            else:
-                return error, error_message
-        else:
-            return error, error_message
-    if museum_action == 0:
-        return success, "no action selected by user"
+#             else:
+#                 return error, error_message
+#         else:
+#             return error, error_message
+#     if museum_action == 0:
+#         return success, "no action selected by user"
 
 
 def main():
-    result, result_message = main_routine()
-    print('result and message: ', result, result_message)
+    main_routine()
+    #print('result and message: ', result, result_message)
     
 if __name__ == "__main__":
     main()
