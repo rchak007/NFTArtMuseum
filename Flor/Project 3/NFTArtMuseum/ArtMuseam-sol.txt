@@ -1,0 +1,84 @@
+pragma solidity ^0.5.0;
+
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC721/ERC721Full.sol";
+//import ‘openzeppelin-solidity/contracts/ownership/Ownable.sol’;
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/drafts/Counters.sol";
+
+contract ArtMuseum is ERC721Full {
+
+    constructor() ERC721Full("Kintsugi", "KNTG") public { }
+
+    using Counters for Counters.Counter;
+    Counters.Counter token_ids;
+
+    struct Artwork {
+        string name;
+        string artist;
+        uint appraisal_value;
+    }
+
+    mapping(uint => Artwork) public art_collection;
+
+    event Appraisal(uint token_id, uint appraisal_value, string report_uri);  // event is not deployed into contract on blockchains
+    // You can do reports later in python, do visualizations
+    event BuyNFTlog(address owner, address buyer, uint token_id, uint appraisal_value);  
+    
+    function registerArtwork(address owner, string memory name, string memory artist, uint initial_value, string memory token_uri) public returns(uint) {
+        token_ids.increment();
+        uint token_id = token_ids.current();
+
+        _mint(owner, token_id);
+        _setTokenURI(token_id, token_uri);
+
+        art_collection[token_id] = Artwork(name, artist, initial_value);
+
+        return token_id;
+    }
+
+    function buyNFT(address payable owner, uint price, uint token_id) public returns(uint){
+        owner.transfer(price);
+      //  safeTransferFrom( owner, msg.sender, token_id);
+        emit BuyNFTlog(owner, msg.sender, token_id, price);
+        return token_id;
+    }
+
+    // function buyArtwork(string memory token_uri) public view returns(uint) {
+    //   uint l_total_supply = totalSupply();  // will use this as Token ID - l_total_supply gives us total NFTs in contract
+    //   uint l_return; 
+    //   Artwork memory l_artwork;
+    //   string memory l_uri;
+    //   while (l_total_supply > 0) {         
+    //       // Loop through all NFTs so we can find the Token id for the Tokeb URI that buyer wants to buy
+    //       l_uri = tokenURI(l_total_supply);    
+    //       // get the Token URI from token id 
+    //     //   if ( l_uri == token_uri ) {
+    //         if ( keccak256(abi.encodePacked((l_uri))) == keccak256(abi.encodePacked((token_uri))) ) {       // find the Token URI buyer wants
+    //           // Need to buy this
+    //           l_artwork = art_collection[l_total_supply];     // get the owner and price info for this token id 
+    //           l_price = l_artwork.appraisal_value;
+    //           address payable l_owner = ownerOf(l_total_supply);
+    //           if ( msg.value > l_price ) { // there is enough to buy
+    //             l_owner.transfer(l_price);   // Pay the current owner address of the NFT
+    //             safeTransferFrom( l_owner, msg.sender, l_total_supply);
+    //             l_bought = 1;
+    //             break;     // NFT bought and also transferred ownership; now exit while loop
+    //           }
+               
+    //       }
+    //       l_total_supply--;
+    //   }
+    //   l_return = 0;
+    //   if ( l_bought == 1 ) {
+    //       l_return = 1;
+    //   }
+    //   return l_total_supply;
+    //}
+
+    function newAppraisal(uint token_id, uint new_value, string memory report_uri) public returns(uint) {
+        art_collection[token_id].appraisal_value = new_value;
+
+        emit Appraisal(token_id, new_value, report_uri);
+
+        return art_collection[token_id].appraisal_value;
+    }
+}
