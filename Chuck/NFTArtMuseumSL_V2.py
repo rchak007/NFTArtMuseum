@@ -364,8 +364,10 @@ def main_routine():
                 #return error, error_message
             #museum_action = 1
         
-            chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_contract_owner.address)
-            register_nft_txn, register_signed_txn_hash, register_signed_txn_rawTransaction, register_signed_txn_r, register_signed_txn_s, register_signed_txn_v, register_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_art_registry(museum_private_key, account_artist.address, nft_name, artist_name, price, token_uri, chain_id, gasEstimate, gas_price, nonce)
+            #chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_contract_owner.address)
+            chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_artist.address)
+            # register_nft_txn, register_signed_txn_hash, register_signed_txn_rawTransaction, register_signed_txn_r, register_signed_txn_s, register_signed_txn_v, register_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_art_registry(museum_private_key, account_artist.address, nft_name, artist_name, price, token_uri, chain_id, gasEstimate, gas_price, nonce)
+            register_nft_txn, register_signed_txn_hash, register_signed_txn_rawTransaction, register_signed_txn_r, register_signed_txn_s, register_signed_txn_v, register_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_art_registry(artist_private_key, account_artist.address, nft_name, artist_name, price, token_uri, chain_id, gasEstimate, gas_price, nonce)
             if error_sign == 1:
                 print('NFT Art Register - Error signing transaction: ', error_signing_txn)
                 return error_signing_txn
@@ -381,6 +383,19 @@ def main_routine():
                 print('register_signed_txn_s = ', register_signed_txn_s)
                 print('register_signed_txn_v = ', register_signed_txn_v)
                 print('register_sent_txn = ', register_sent_txn)
+                
+                ######### Now Approve the contract owner to be able to transfer.
+                # first get the mined token id from the contract 
+                
+                chain_id, gasEstimate, gas_price, nonce = prep_transaction(account_artist.address)
+                approve_nft_txn, approve_signed_nft_txn_hash, approve_signed_nft_txn_rawTransaction, approve_signed_nft_txn_r, approve_signed_nft_txn_s, approve_signed_nft_txn_v, approve_sent_txn, error_sign, error_signing_txn, error_send, error_sending_txn = execute_approval(artist_private_key, account_contract_owner.address, buy_token_id, chain_id, gasEstimate, gas_price, nonce)
+            if error_sign == 1:
+                print('Owner approval - Error signing transaction: ', error_signing_txn)
+                #return error_sign, error_signing_txn
+            if error_send == 1:
+                print('Owner approval - Error signing transaction: ', error_sending_txn)
+                #return error_send, error_sending_txn
+            if error_sign != 1 and error_send != 1:
                 #register_get_txn = w1.eth.getTransaction(register_sent_txn)
                 #print('register_get_txn = ', register_get_txn)
                 # Check if this Artist is new then store the key
