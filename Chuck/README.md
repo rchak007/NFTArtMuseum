@@ -1,8 +1,8 @@
 
 
-Chakravarti Raghavan's README.md
+#### Chakravarti Raghavan's README.md
 
-Below is NFTArt Museum solidity contract and Python Web3 interface with Steamlit Web for users
+### Below is NFTArt Museum solidity contract and Python Web3 interface with Steamlit Web for users
 
 1. Python file: NFTArtMuseumSL.py
 
@@ -14,7 +14,9 @@ Below is NFTArt Museum solidity contract and Python Web3 interface with Steamlit
 
    
 
+### Pinata Cloud storage
 
+Pinata was used to store NFT Art which has IPFS enabled.
 
 - Pinata - NFT storage made easy & Hosted on IPFS - 
   - Pinata makes **file storage easy** for everyone. Whether it's images or video, 3D files or an app, easily take your creations and share it with the world.
@@ -33,13 +35,19 @@ Below is NFTArt Museum solidity contract and Python Web3 interface with Steamlit
 
 
 
+IPFS - CIDV1 hash is obtained by using Pinata CID in the below link:
+
+[IPFS CIDV1 from V0](https://cid.ipfs.io)
+
+
+
 ![sl_ipfs2](sl_ipfs2.png)
 
 
 
 
 
-So we have  designed a quick StreamLit web App which will be expanded later on to have more bells and whistles.
+##### So we have  designed a quick StreamLit web App which will be expanded later on to have more bells and whistles.
 
 **Time to MINT your NFT!!**
 
@@ -47,7 +55,7 @@ So we have  designed a quick StreamLit web App which will be expanded later on t
 
 
 
-
+##### Below we give the NFT name, Artist name, Token URI from IPFS, Price and Artist's private key so later we have approval to tranfer their NFT to buyer and also we will use that address to get the money when NFT is sold.
 
 ![sl_registerArt](sl_registerArt.png)
 
@@ -61,7 +69,7 @@ So we have  designed a quick StreamLit web App which will be expanded later on t
 
 
 
-
+##### Clicking on above link takes us to Etherscan to view the transaction details.
 
 
 
@@ -77,7 +85,7 @@ So we have  designed a quick StreamLit web App which will be expanded later on t
 
 
 
-
+##### We can also go to Remix and verify some details.
 
 ![sl_art_coll](sl_art_coll.png)
 
@@ -85,23 +93,23 @@ So we have  designed a quick StreamLit web App which will be expanded later on t
 
 
 
-
+##### Now below we illustrade a Buy NFT transaction from UI.
 
 ![sl_buy_landing](sl_buy_landing.png)
 
 
 
-
+##### We enter the Token ID that needs to be bought. When we do that the NFT name, Artist name, and Price info is shown to verify if thats the NFT they want to buy.
 
 ![sl_buy_token_info](sl_buy_token_info.png)
 
-
+##### Then the Buyer also enters their Private key so that gives permission to tranfer the price from their address to Owners address and then token id is transferred from the Owner to Buyer so now they own the NFT.
 
 ![sl_buy_success](sl_buy_success.png)
 
 
 
-
+##### Again we can go to Etherscan to verify the address.
 
 ![sl_buy_etherscanTxn](sl_buy_etherscanTxn.png)
 
@@ -119,7 +127,7 @@ So we have  designed a quick StreamLit web App which will be expanded later on t
 
 
 
-
+#### Architecture the NFT Art Museum contract
 
 ![image-20210925090935411](Architecture.png)
 
@@ -147,18 +155,6 @@ and here is screen snippet:
 ![sl_remix_contract](sl_remix_contract.png)
 
 
-
-
-
-
-
-![sl_pythoncode_init](sl_pythoncode_init.png)
-
-
-
-
-
-![sl_python_register](sl_python_register.png)
 
 
 
