@@ -8,7 +8,7 @@ Below is NFTArt Museum solidity contract and Python Web3 interface with Steamlit
 
 2. link to Remix Solidity Contract  
 
-   [NFTArtMuseum Solidity code](https://remix.ethereum.org/#version=soljson-v0.5.17+commit.d19bba13.js&optimize=false&runs=200&gist=)
+   [NFTArtMuseum Solidity code](https://gist.github.com/rchak007/bcb032abe765e45f2800de85e786dc9c)
 
    
 
@@ -140,7 +140,7 @@ So we have  designed a quick StreamLit web App which will be expanded later on t
 
 Below is link to Remix Solidity Contract 
 
-[NFTArtMuseum Solidity code](https://remix.ethereum.org/#version=soljson-v0.5.17+commit.d19bba13.js&optimize=false&runs=200&gist=)
+[NFTArtMuseum Solidity code](https://gist.github.com/rchak007/bcb032abe765e45f2800de85e786dc9c)
 
 and here is screen snippet:
 

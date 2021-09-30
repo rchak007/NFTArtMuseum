@@ -32,7 +32,7 @@ Python code for Buying token with streamlit UI
 
 DAVID  \-
 
-- NFT museum.
+- NFT museum. 
 - Entry cost - just like regular museum. once you go in you can buy NFT then you pay for that additionally. And that money goes to that creator. 
 - you can have BUY or even Borrow. 1% goes to product owners & rest go to NFT owner.
 - Generating NFT - using AI to generate.
@@ -43,8 +43,7 @@ DAVID  \-
 
 FLOR - 
 
-- Vaccine record; 
-- NFT represents Vaccine... 
+- Google AI generated Art 
 - 
 
 
